@@ -1,58 +1,105 @@
+<script>
+export default {
+  data() {
+    return {
+      data: [
+        { name: 'foo1', value: 'bar1' },
+        { name: 'foo2', value: 'bar2' },
+        { name: 'foo3', value: 'bar3' },
+        { name: 'foo4', value: 'bar4' },
+        { name: 'foo5', value: 'bar5' },
+        { name: 'foo6', value: 'bar6' },
+        { name: 'foo7', value: 'bar7' },
+        { name: 'foo8', value: 'bar8' },
+        { name: 'foo9', value: 'bar9' },
+        { name: 'foo10', value: 'bar10' },
+        { name: 'foo11', value: 'bar11' },
+        { name: 'foo12', value: 'bar12' },
+        { name: 'foo13', value: 'bar13' },
+        { name: 'foo14', value: 'bar14' },
+        { name: 'foo15', value: 'bar15' },
+        { name: 'foo16', value: 'bar16' },
+        { name: 'foo17', value: 'bar17' },
+        { name: 'foo18', value: 'bar18' },
+        { name: 'foo19', value: 'bar19' },
+        { name: 'foo20', value: 'bar20' },
+      ],
+      selectedItem: null,
+    };
+  },
+  methods: {
+    selectItem(index) {
+      this.selectedItem = index;
+    },
+    saveChanges() {
+      this.selectedItem = null;
+    },
+  },
+};
+</script>
+
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
+  <div class="wrapper">
     <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
+      <li v-for="(item, index) in data" :key="index">
+        <span>{{ item.name }}:</span>
+        <input type="text" v-model="item.value" @click="selectItem(index)" />
+      </li>
     </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+
+    <form v-if="selectedItem !== null">
+      <h3>Редактирование элемента {{ selectedItem + 1 }}</h3>
+      <input type="text" v-model="data[selectedItem].value" />
+      <button @click="saveChanges">Сохранить</button>
+    </form>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.wrapper {
+  width: 900px;
+  height: auto;
+  border-radius: 50px;
+  padding: 20px;
+  background: black;
+  text-align: center;
+  color: #fff;
+}
+.wrapper h3 {
+  margin-top: 50px;
+}
+
+.wrapper input {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #110813;
+  color: #fcfcfc;
+  font-size: 14px;
+  padding: 5px 8px;
+  outline: none;
+}
+.wrapper input:hover {
+  border: 2px solid #6e2d7d;
+  border-radius: 10px;
+}
+
+.wrapper input:focus {
+  border-bottom-color: #6e2d7d;
+}
+.wrapper button {
+  background: #e3bc4d;
+  color: #fff;
+  border-radius: 10px;
+  border: 2px solid #b99935;
+  padding: 10px 15px;
+  margin-left: 20px;
+  cursor: pointer;
+  transition: transform 500ms ease;
+}
+.wrapper button:hover {
+  transform: scale(1.1) translateY(-1px);
 }
 ul {
   list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>
