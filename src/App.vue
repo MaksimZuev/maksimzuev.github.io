@@ -22,4 +22,23 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    339deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45)
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
